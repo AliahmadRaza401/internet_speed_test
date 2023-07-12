@@ -4,6 +4,7 @@ import 'package:internet_speedtest_app/provider/internet_connection_provider.dar
 import 'package:internet_speedtest_app/utility/app_colors.dart';
 import 'package:internet_speedtest_app/widgets/custom_app_bar.dart';
 import 'package:internet_speedtest_app/widgets/custom_text_widget.dart';
+import 'package:internet_speedtest_app/widgets/divider.dart';
 import 'package:provider/provider.dart';
 import 'package:ripple_wave/ripple_wave.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
@@ -31,12 +32,13 @@ class _StartPageState extends State<StartPage> {
       extendBodyBehindAppBar: true,
       body: Container(
         decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(
-              AppImages.backgroundImage,
-            ),
-            fit: BoxFit.cover,
-          ),
+          gradient: AppColors.Lineargradiebnt,
+          // image: DecorationImage(
+          //   image: AssetImage(
+          //     AppImages.backgroundImage,
+          //   ),
+          //   fit: BoxFit.cover,
+          // ),
         ),
         child: internetConnectionProvider.internetConnection
             ? Column(
@@ -95,325 +97,508 @@ class _StartPageState extends State<StartPage> {
                                 )
                               : Column(
                                   children: [
+                                    Container(
+                                      padding: EdgeInsets.symmetric(
+                                        vertical: 10,
+                                        horizontal: 10,
+                                      ),
+                                      margin: EdgeInsets.symmetric(
+                                        vertical: 0,
+                                        horizontal: 15.w,
+                                      ),
+                                      decoration: BoxDecoration(
+                                          color: Color.fromARGB(80, 35, 47, 78),
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      child: Row(
+                                        children: [
+                                          Expanded(
+                                              child: Container(
+                                            alignment: Alignment.center,
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                text(
+                                                  text: 'IP address',
+                                                  size: 12.sp,
+                                                  boldText: FontWeight.w400,
+                                                  color: Color(0xff7c808b),
+                                                  fontFamily: 'popinsregular',
+                                                ),
+                                                text(
+                                                  text: 'Download',
+                                                  size: 15.sp,
+                                                  boldText: FontWeight.w400,
+                                                  color:
+                                                      AppColors.textWhiteColor,
+                                                  fontFamily: 'popinsregular',
+                                                )
+                                              ],
+                                            ),
+                                          )),
+                                          divider(height: 30.0),
+                                          Expanded(
+                                              child: Container(
+                                            alignment: Alignment.center,
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                text(
+                                                  text: 'Operator',
+                                                  size: 12.sp,
+                                                  boldText: FontWeight.w400,
+                                                  color: Color(0xff7c808b),
+                                                  fontFamily: 'popinsregular',
+                                                ),
+                                                text(
+                                                  text: 'Download',
+                                                  size: 15.sp,
+                                                  boldText: FontWeight.w400,
+                                                  color:
+                                                      AppColors.textWhiteColor,
+                                                  fontFamily: 'popinsregular',
+                                                )
+                                              ],
+                                            ),
+                                          )),
+                                          divider(height: 30.0),
+                                          Expanded(
+                                              child: Container(
+                                            alignment: Alignment.center,
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                text(
+                                                  text: 'Address',
+                                                  size: 12.sp,
+                                                  boldText: FontWeight.w400,
+                                                  color: Color(0xff7c808b),
+                                                  fontFamily: 'popinsregular',
+                                                ),
+                                                text(
+                                                  text: 'Download',
+                                                  size: 15.sp,
+                                                  boldText: FontWeight.w400,
+                                                  color:
+                                                      AppColors.textWhiteColor,
+                                                  fontFamily: 'popinsregular',
+                                                )
+                                              ],
+                                            ),
+                                          )),
+                                        ],
+                                      ),
+                                    ),
                                     SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.45,
                                       child: SfRadialGauge(
                                         axes: <RadialAxis>[
                                           RadialAxis(
-                                            startAngle: 270,
-                                            endAngle: 270,
                                             minimum: 0,
-                                            maximum: 80,
-                                            interval: 10,
-                                            radiusFactor: 0.4,
-                                            showAxisLine: false,
-                                            showLastLabel: false,
-                                            minorTicksPerInterval: 4,
+                                            maximum: 50,
+                                            labelOffset: 30,
+                                            showTicks: false,
+                                            axisLineStyle: AxisLineStyle(
+                                              thicknessUnit:
+                                                  GaugeSizeUnit.factor,
+                                              thickness: 0.1,
+                                              // cornerStyle:
+                                              //     CornerStyle.bothCurve,
+                                              // dashArray: <double>[5, 5],
+                                              color: Color(0xff232F4E),
+                                              // gradient: const SweepGradient(
+                                              //     colors: <Color>[
+                                              //       Color(0xFFFF7676),
+                                              //       Color(0xFFF54EA2),
+                                              //     ],
+                                              //     stops: <double>[
+                                              //       0.25,
+                                              //       0.75
+                                              //     ]),
+                                            ),
                                             majorTickStyle: MajorTickStyle(
-                                                length: 8,
-                                                thickness: 3,
-                                                color: Colors.white),
+                                              length: 6,
+                                              thickness: 4,
+                                              color: Colors.red,
+                                            ),
                                             minorTickStyle: MinorTickStyle(
-                                                length: 3,
-                                                thickness: 1.5,
-                                                color: Colors.grey),
+                                              length: 3,
+                                              thickness: 3,
+                                              color: Colors.green,
+                                            ),
                                             axisLabelStyle: GaugeTextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14),
-                                            onLabelCreated: labelCreated,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 14,
+                                            ),
+                                            // ranges: <GaugeRange>[
+                                            //   GaugeRange(
+                                            //     startValue: 0,
+                                            //     endValue: 200,
+                                            //     sizeUnit: GaugeSizeUnit.factor,
+                                            //     startWidth: 0.03,
+                                            //     endWidth: 0.03,
+                                            //     gradient: SweepGradient(
+                                            //       colors: const <Color>[
+                                            //         Color(0xff54C0EB),
+                                            //         Color(0xffF8B64C),
+                                            //         Color(0xffF1543F),
+                                            //       ],
+                                            //       stops: const <double>[
+                                            //         0.0,
+                                            //         0.5,
+                                            //         1
+                                            //       ],
+                                            //     ),
+                                            //   ),
+                                            // ],
+                                            pointers: <GaugePointer>[
+                                              RangePointer(
+                                                value:
+                                                    homeProvider.transferRate,
+                                                width: 0.1,
+                                                sizeUnit: GaugeSizeUnit.factor,
+                                                // cornerStyle:
+                                                //     CornerStyle.bothCurve,
+                                                gradient: const SweepGradient(
+                                                    colors: <Color>[
+                                                      Color(0xFF32DAEB),
+                                                      Color(0xFF6FFFBD)
+                                                    ],
+                                                    stops: <double>[
+                                                      0.25,
+                                                      0.75
+                                                    ]),
+                                              ),
+                                              NeedlePointer(
+                                                value:
+                                                    homeProvider.transferRate,
+                                                enableAnimation: true,
+                                                needleStartWidth: 3,
+                                                needleEndWidth: 10,
+                                                gradient: LinearGradient(
+                                                    colors: <Color>[
+                                                      Color(0xFF32DAEB),
+                                                      Color(0xFF6FFFBD)
+                                                    ],
+                                                    stops: <double>[
+                                                      0.25,
+                                                      0.75
+                                                    ]),
+                                                knobStyle: KnobStyle(
+                                                  color: Color(0xff232F4E),
+                                                ),
+                                              )
+                                            ],
+                                            annotations: <GaugeAnnotation>[
+                                              GaugeAnnotation(
+                                                widget: Container(
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: <Widget>[
+                                                      Text(
+                                                        homeProvider
+                                                            .transferRate
+                                                            .toStringAsFixed(2),
+                                                        style: TextStyle(
+                                                          fontSize: 25,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color: Colors.white,
+                                                        ),
+                                                      ),
+                                                      SizedBox(height: 20),
+                                                      Text(
+                                                        'MB',
+                                                        style: TextStyle(
+                                                          fontSize: 14,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color: Colors.white,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                angle: 90,
+                                                positionFactor: 0.75,
+                                              ),
+                                            ],
                                           ),
-                                          RadialAxis(
-                                              minimum: 0,
-                                              maximum: 20,
-                                              labelOffset: 30,
-                                              axisLineStyle: AxisLineStyle(
-                                                  thicknessUnit:
-                                                      GaugeSizeUnit.factor,
-                                                  thickness: 0.03),
-                                              majorTickStyle: MajorTickStyle(
-                                                  length: 6,
-                                                  thickness: 4,
-                                                  color: Colors.white),
-                                              minorTickStyle: MinorTickStyle(
-                                                  length: 3,
-                                                  thickness: 3,
-                                                  color: Colors.white),
-                                              axisLabelStyle: GaugeTextStyle(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 14),
-                                              ranges: <GaugeRange>[
-                                                GaugeRange(
-                                                    startValue: 0,
-                                                    endValue: 200,
-                                                    sizeUnit:
-                                                        GaugeSizeUnit.factor,
-                                                    startWidth: 0.03,
-                                                    endWidth: 0.03,
-                                                    gradient: SweepGradient(
-                                                        colors: const <Color>[
-                                                          Color(0xff54C0EB),
-                                                          Color(0xffF8B64C),
-                                                          Color(0xffF1543F),
-                                                        ],
-                                                        stops: const <double>[
-                                                          0.0,
-                                                          0.5,
-                                                          1
-                                                        ]))
-                                              ],
-                                              pointers: <GaugePointer>[
-                                                NeedlePointer(
-                                                    value: homeProvider
-                                                        .transferRate,
-                                                    //  _value,
-                                                    needleLength: 0.95,
-                                                    enableAnimation: true,
-                                                    animationType:
-                                                        AnimationType.ease,
-                                                    needleStartWidth: 1.5,
-                                                    needleEndWidth: 6,
-                                                    needleColor: Colors.red,
-                                                    knobStyle: KnobStyle(
-                                                        knobRadius: 0.09,
-                                                        sizeUnit: GaugeSizeUnit
-                                                            .factor))
-                                              ],
-                                              annotations: <GaugeAnnotation>[
-                                                GaugeAnnotation(
-                                                    widget: Container(
-                                                        child: Column(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            children: <Widget>[
-                                                          Text(
-                                                              // _value.toString(),
-                                                              homeProvider
-                                                                  .transferRate
-                                                                  .toString(),
-                                                              style: TextStyle(
-                                                                fontSize: 25,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                color: Colors
-                                                                    .white,
-                                                              )),
-                                                          SizedBox(height: 20),
-                                                          Text('MB',
-                                                              style: TextStyle(
-                                                                fontSize: 14,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                color: Colors
-                                                                    .white,
-                                                              ))
-                                                        ])),
-                                                    angle: 90,
-                                                    positionFactor: 0.75)
-                                              ])
                                         ],
                                       ),
                                     ),
                                     Container(
-                                      // hei÷ght: 110,
-
                                       margin: EdgeInsets.symmetric(
-                                          horizontal: 15.w),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(30),
-                                        color: AppColors.primaryColor
-                                            .withOpacity(0.87),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: AppColors.textWhiteColor,
-                                            blurStyle: BlurStyle.outer,
-                                            blurRadius: 12,
-                                            spreadRadius: 1,
+                                          horizontal: 30.w),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              SizedBox(height: 10.h),
+                                              Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.end,
+                                                children: [
+                                                  Container(
+                                                    height: 18.h,
+                                                    width: 18.w,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              30),
+                                                      color: AppColors
+                                                          .textWhiteColor,
+                                                      // image: DecorationImage(
+                                                      //   image: AssetImage(
+                                                      //     AppImages.uploadIcon,
+                                                      //   ),
+                                                      // ),
+                                                    ),
+                                                    child: Image.asset(
+                                                      AppImages.downloadIcon,
+                                                      color: Colors.blue,
+                                                    ),
+                                                  ),
+                                                  SizedBox(width: 5.w),
+                                                  text(
+                                                    text: 'Download',
+                                                    size: 15.sp,
+                                                    boldText: FontWeight.w400,
+                                                    color: AppColors
+                                                        .textWhiteColor,
+                                                    fontFamily: 'popinsregular',
+                                                  )
+                                                ],
+                                              ),
+                                              Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.end,
+                                                children: [
+                                                  text(
+                                                    text: homeProvider
+                                                            .testDownloadType
+                                                        ? '${(homeProvider.downloadComplteRate! / 100) * 100}'
+                                                                    .length >
+                                                                12
+                                                            ? '${((homeProvider.downloadComplteRate! / 100) * 100).toStringAsFixed(2)}'
+                                                            : '${((homeProvider.downloadComplteRate! / 100) * 100).toStringAsFixed(2)}'
+                                                        : '0',
+                                                    size: 22.sp,
+                                                    boldText: FontWeight.w800,
+                                                    color: AppColors
+                                                        .textWhiteColor,
+                                                    fontFamily: 'popinsbold',
+                                                  ),
+                                                  SizedBox(width: 5.w),
+                                                  text(
+                                                    text: 'Mbps',
+                                                    size: 10.sp,
+                                                    boldText: FontWeight.w400,
+                                                    color: AppColors
+                                                        .textWhiteColor,
+                                                    fontFamily: 'popinsregular',
+                                                  )
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                          divider(),
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              SizedBox(height: 10.h),
+                                              Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.end,
+                                                children: [
+                                                  Container(
+                                                    height: 18.h,
+                                                    width: 18.w,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              30),
+                                                      color: AppColors
+                                                          .textWhiteColor,
+                                                      // image: DecorationImage(
+                                                      //   image: AssetImage(
+                                                      //     AppImages.uploadIcon,
+                                                      //   ),
+                                                      // ),
+                                                    ),
+                                                    child: Image.asset(
+                                                      AppImages.downloadIcon,
+                                                      color: Colors.blue,
+                                                    ),
+                                                  ),
+                                                  SizedBox(width: 5.w),
+                                                  text(
+                                                    text: 'Download',
+                                                    size: 15.sp,
+                                                    boldText: FontWeight.w400,
+                                                    color: AppColors
+                                                        .textWhiteColor,
+                                                    fontFamily: 'popinsregular',
+                                                  )
+                                                ],
+                                              ),
+                                              Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.end,
+                                                children: [
+                                                  text(
+                                                    text: homeProvider
+                                                            .testDownloadType
+                                                        ? '${(homeProvider.downloadComplteRate! / 100) * 100}'
+                                                                    .length >
+                                                                12
+                                                            ? '${((homeProvider.downloadComplteRate! / 100) * 100).toStringAsFixed(2)}'
+                                                            : '${((homeProvider.downloadComplteRate! / 100) * 100).toStringAsFixed(2)}'
+                                                        : '0',
+                                                    size: 22.sp,
+                                                    boldText: FontWeight.w800,
+                                                    color: AppColors
+                                                        .textWhiteColor,
+                                                    fontFamily: 'popinsbold',
+                                                  ),
+                                                  SizedBox(width: 5.w),
+                                                  text(
+                                                    text: 'Mbps',
+                                                    size: 10.sp,
+                                                    boldText: FontWeight.w400,
+                                                    color: AppColors
+                                                        .textWhiteColor,
+                                                    fontFamily: 'popinsregular',
+                                                  )
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                          divider(),
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              SizedBox(height: 10.h),
+                                              Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.end,
+                                                children: [
+                                                  Container(
+                                                    height: 18.h,
+                                                    width: 18.w,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              30),
+                                                      color: AppColors
+                                                          .textWhiteColor,
+                                                      // image: DecorationImage(
+                                                      //   image: AssetImage(
+                                                      //     AppImages.uploadIcon,
+                                                      //   ),
+                                                      // ),
+                                                    ),
+                                                    child: Image.asset(
+                                                      AppImages.uploadIcon,
+                                                      color: Colors.blue,
+                                                    ),
+                                                  ),
+                                                  SizedBox(width: 5.w),
+                                                  text(
+                                                    text: 'Upload',
+                                                    size: 15.sp,
+                                                    boldText: FontWeight.w400,
+                                                    color: AppColors
+                                                        .textWhiteColor,
+                                                    fontFamily: 'popinsregular',
+                                                  )
+                                                ],
+                                              ),
+                                              Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.end,
+                                                children: [
+                                                  text(
+                                                    text: homeProvider
+                                                            .testUploadType
+                                                        ? '${(homeProvider.uploadCompleteRate! / 100) * 100}'
+                                                                    .length >
+                                                                12
+                                                            ? '${((homeProvider.uploadCompleteRate! / 100) * 100).toStringAsFixed(2)}'
+                                                            : '${((homeProvider.uploadCompleteRate! / 100) * 100).toStringAsFixed(2)}'
+                                                        : '0',
+                                                    size: 22.sp,
+                                                    boldText: FontWeight.w800,
+                                                    color: AppColors
+                                                        .textWhiteColor,
+                                                    fontFamily: 'popinsbold',
+                                                  ),
+                                                  SizedBox(width: 5.w),
+                                                  text(
+                                                    text: 'Mbps',
+                                                    size: 10.sp,
+                                                    boldText: FontWeight.w400,
+                                                    color: AppColors
+                                                        .textWhiteColor,
+                                                    fontFamily: 'popinsregular',
+                                                  )
+                                                ],
+                                              ),
+                                            ],
                                           ),
                                         ],
-                                      ),
-                                      child: Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 15.h, horizontal: 22.w),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                SizedBox(height: 10.h),
-                                                Row(
-                                                  children: [
-                                                    Container(
-                                                      height: 18.h,
-                                                      width: 18.w,
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(30),
-                                                        color: AppColors
-                                                            .textBlackColor,
-                                                        image: DecorationImage(
-                                                          image: AssetImage(
-                                                            AppImages
-                                                                .downloadIcon,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    SizedBox(width: 15.w),
-                                                    Column(
-                                                      children: [
-                                                        text(
-                                                          text: 'Download',
-                                                          size: 20,
-                                                          boldText:
-                                                              FontWeight.w600,
-                                                          color: AppColors
-                                                              .textWhiteColor,
-                                                          fontFamily:
-                                                              'popinsregular',
-                                                        )
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
-                                                Row(
-                                                  // mainAxisAlignment:
-                                                  //     MainAxisAlignment.end,
-                                                  children: [
-                                                    text(
-                                                      text: homeProvider
-                                                              .testDownloadType
-                                                          ? '${(homeProvider.downloadComplteRate! / 100) * 100}'
-                                                                      .length >
-                                                                  12
-                                                              ? '${(homeProvider.downloadComplteRate! / 100) * 100}'
-                                                                  .substring(
-                                                                      0, 5)
-                                                              : '${(homeProvider.downloadComplteRate! / 100) * 100}'
-                                                          : '0',
-                                                      size: 20.sp,
-                                                      boldText: FontWeight.w400,
-                                                      color: AppColors
-                                                          .textWhiteColor,
-                                                      fontFamily:
-                                                          'popinsregular',
-                                                    ),
-                                                    SizedBox(width: 15.w),
-                                                    text(
-                                                        text: 'Mbps',
-                                                        size: 12,
-                                                        boldText:
-                                                            FontWeight.w400,
-                                                        color: AppColors
-                                                            .textWhiteColor,
-                                                        fontFamily:
-                                                            'popinsregular')
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                            Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                SizedBox(height: 10.h),
-                                                Row(
-                                                  children: [
-                                                    Container(
-                                                      height: 18.h,
-                                                      width: 18.w,
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(30),
-                                                        color: AppColors
-                                                            .textBlackColor,
-                                                        image: DecorationImage(
-                                                          image: AssetImage(
-                                                            AppImages
-                                                                .uploadIcon,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    SizedBox(width: 15.w),
-                                                    text(
-                                                      text: 'Upload',
-                                                      size: 20,
-                                                      boldText: FontWeight.w600,
-                                                      color: AppColors
-                                                          .textWhiteColor,
-                                                      fontFamily:
-                                                          'popinsregular',
-                                                    )
-                                                  ],
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    text(
-                                                      text: homeProvider
-                                                              .testUploadType
-                                                          ? '${(homeProvider.uploadCompleteRate! / 100) * 100}'
-                                                                      .length >
-                                                                  12
-                                                              ? '${(homeProvider.uploadCompleteRate! / 100) * 100}'
-                                                                  .substring(
-                                                                      1, 12)
-                                                              : '${(homeProvider.uploadCompleteRate! / 100) * 100}'
-                                                          : '0',
-                                                      size: 20.sp,
-                                                      boldText: FontWeight.w400,
-                                                      color: AppColors
-                                                          .textWhiteColor,
-                                                      fontFamily:
-                                                          'popinsregular',
-                                                    ),
-                                                    SizedBox(width: 15.w),
-                                                    text(
-                                                      text: 'Mbps',
-                                                      size: 12.sp,
-                                                      boldText: FontWeight.w400,
-                                                      color: AppColors
-                                                          .textWhiteColor,
-                                                      fontFamily:
-                                                          'popinsregular',
-                                                    )
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
                                       ),
                                     ),
                                   ],
                                 ),
                           homepro.homeState == 3
-                              ? Padding(
-                                  padding: const EdgeInsets.only(top: 28.0),
-                                  child: IconButton(
-                                    onPressed: () {
-                                      homeProvider.cleanData();
-                                    },
-                                    icon: Icon(
-                                      Icons.restart_alt_rounded,
-                                      color: AppColors.textWhiteColor,
-                                      size: 60,
+                              ? InkWell(
+                                  onTap: () {
+                                    homeProvider.cleanData();
+                                  },
+                                  child: Container(
+                                    margin: EdgeInsets.only(top: 20),
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.4,
+                                    alignment: Alignment.center,
+                                    padding: EdgeInsets.symmetric(
+                                      vertical: 10.h,
                                     ),
-                                  ))
+                                    decoration: BoxDecoration(
+                                        gradient: AppColors.btngradiebnt,
+                                        borderRadius:
+                                            BorderRadius.circular(30)),
+                                    child: text(
+                                      text: 'Test Again',
+                                      size: 18.sp,
+                                      boldText: FontWeight.w700,
+                                      color: AppColors.primaryColor,
+                                      fontFamily: 'popinssemibold',
+                                    ),
+                                  ),
+                                )
                               : SizedBox(),
                         ],
                       );
