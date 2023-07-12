@@ -67,6 +67,7 @@ class HomeProvider extends ChangeNotifier {
           ),
         );
         homeState = 3;
+        transferRate = 0.0;
         notifyListeners();
       },
       onDownloadComplete: (TestResult data) {

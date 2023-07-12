@@ -7,6 +7,10 @@ class AppColors {
   static const Color primaryColor = Color(0xFF0e061f);
   static const Color secondaryColor = Color(0xFF151f2b);
   static const Color greenColor = Color(0xff15CA48);
+    static const Color p1Color = Color(0xFF32DAEB);
+        static const Color p2Color = Color(0xFF6FFFBD);
+  static const Color s1Color = Color(0xFF7e56d6);
+        static const Color s2Color = Color(0xFFee71f6);
   static Gradient Lineargradiebnt = LinearGradient(
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
@@ -14,11 +18,8 @@ class AppColors {
         secondaryColor,
         primaryColor,
       ]);
-        static Gradient btngradiebnt = LinearGradient(
+  static Gradient btngradiebnt = LinearGradient(
       begin: Alignment.centerLeft,
       end: Alignment.centerRight,
-      colors: [
-         Color(0xFF32DAEB),
-                                                      Color(0xFF6FFFBD)
-      ]);
+      colors: [p1Color, p2Color]);
 }

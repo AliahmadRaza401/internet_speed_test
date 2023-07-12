@@ -19,7 +19,6 @@ class _WifiInfoScreenState extends State<WifiInfoScreen> {
   @override
   void initState() {
     super.initState();
-    Provider.of<WifiProvider>(context, listen: false).initNetworkInfo();
   }
 
   @override

@@ -19,7 +19,7 @@ class _PhoneInfoScreenState extends State<PhoneInfoScreen> {
   @override
   void initState() {
     super.initState();
-    Provider.of<PhoneProvider>(context, listen: false).readAndroidBuildData();
+  
   }
 
   @override
