@@ -55,8 +55,11 @@ class HomeProvider extends ChangeNotifier {
       onCompleted: (TestResult download, TestResult upload) {
         log("download.transferRate = " + download.transferRate.toString());
         log("Upload.transferRate = " + upload.transferRate.toString());
+        log("download.durationInMillis = " +
+            download.durationInMillis.toString());
         uploadCompleteRate = upload.transferRate;
         downloadComplteRate = download.transferRate;
+
         addTODOItem(
           WifiResultModel(
             testDate: DateTime.now(),

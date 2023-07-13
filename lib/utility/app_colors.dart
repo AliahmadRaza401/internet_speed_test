@@ -11,6 +11,9 @@ class AppColors {
         static const Color p2Color = Color(0xFF6FFFBD);
   static const Color s1Color = Color(0xFF7e56d6);
         static const Color s2Color = Color(0xFFee71f6);
+     static const Color lightBG       = Color.fromARGB(80, 35, 47, 78);
+          static const Color lightBGMeter       = Color.fromARGB(80, 35, 47, 78);
+
   static Gradient Lineargradiebnt = LinearGradient(
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,

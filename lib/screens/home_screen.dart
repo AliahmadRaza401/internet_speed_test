@@ -21,9 +21,13 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
   void navigationBottomBar(int index) {
+    // HomeProvider homeProvider =
+    //     Provider.of<HomeProvider>(context, listen: true);
+
     setState(() {
       _selectedIndex = index;
     });
+    // homeProvider.homeState = 0;
   }
 
   final List<Widget> _pages = [
@@ -36,6 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     InternetConnectionProvider internetConnectionProvider =
         Provider.of<InternetConnectionProvider>(context, listen: true);
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Color(0xff111125),
@@ -88,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: BottomNavigationBar(
             backgroundColor: AppColors.secondaryColor,
             selectedLabelStyle: TextStyle(
-              color: AppColors.greenColor,
+              color: AppColors.p1Color,
               fontSize: 15.sp,
               fontWeight: FontWeight.w400,
             ),
@@ -105,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: 25,
                   fit: BoxFit.contain,
                   color: _selectedIndex == 0
-                      ? AppColors.greenColor
+                      ? AppColors.p2Color
                       : AppColors.textWhiteColor,
                 ),
                 label: 'Start',
@@ -117,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: 25,
                   fit: BoxFit.contain,
                   color: _selectedIndex == 1
-                      ? AppColors.greenColor
+                      ? AppColors.p2Color
                       : AppColors.textWhiteColor,
                 ),
                 label: 'History',
@@ -129,14 +134,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: 25,
                   fit: BoxFit.contain,
                   color: _selectedIndex == 2
-                      ? AppColors.greenColor
+                      ? AppColors.p2Color
                       : AppColors.textWhiteColor,
                 ),
                 label: 'Settings',
               ),
             ],
             currentIndex: _selectedIndex,
-            selectedItemColor: AppColors.greenColor,
+            selectedItemColor: AppColors.p2Color,
             unselectedItemColor: AppColors.textWhiteColor,
             onTap: navigationBottomBar,
           ),

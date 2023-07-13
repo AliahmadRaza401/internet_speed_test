@@ -6,6 +6,7 @@ class InternetConnectionProvider with ChangeNotifier {
   Map _source = {ConnectivityResult.none: false};
   final NetworkConnectivity _networkConnectivity = NetworkConnectivity.instance;
   bool internetConnection = false;
+  bool isWifi = false;
 
   initStateNetCheck(BuildContext context) {
     _networkConnectivity.initialise();
@@ -20,6 +21,7 @@ class InternetConnectionProvider with ChangeNotifier {
           break;
         case ConnectivityResult.wifi:
           internetConnection = _source.values.toList()[0] ? true : false;
+           isWifi = true;
           notifyListeners();
           break;
         case ConnectivityResult.none:

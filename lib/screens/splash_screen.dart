@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
       () {
         AppRoutes.pushAndRemoveUntil(
           context,
-          PageTransitionType.fade,
+          PageTransitionType.leftToRightWithFade,
           HomeScreen(),
         );
       },
@@ -33,14 +33,14 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(
-              AppImages.backgroundImage,
+        decoration: BoxDecoration(gradient: AppColors.Lineargradiebnt
+            // image: DecorationImage(
+            //   image: AssetImage(
+            //     AppImages.backgroundImage,
+            //   ),
+            //   fit: BoxFit.cover,
+            // ),
             ),
-            fit: BoxFit.cover,
-          ),
-        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -78,7 +78,7 @@ class _SplashScreenState extends State<SplashScreen> {
             Padding(
               padding: EdgeInsets.only(top: 5),
               child: Text(
-                'By LoopStack',
+                'By AmigosDev',
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   // decoration: TextDecoration.underline,

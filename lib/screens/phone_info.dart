@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import 'package:internet_speedtest_app/provider/phone_provider.dart';
 import 'package:internet_speedtest_app/widgets/custom_app_bar.dart';
 
-import '../utility/app_Images.dart';
 
 class PhoneInfoScreen extends StatefulWidget {
   const PhoneInfoScreen({super.key});
@@ -19,7 +18,6 @@ class _PhoneInfoScreenState extends State<PhoneInfoScreen> {
   @override
   void initState() {
     super.initState();
-  
   }
 
   @override
@@ -31,17 +29,18 @@ class _PhoneInfoScreenState extends State<PhoneInfoScreen> {
       // bottomNavigationBar: AdsServices.displayBannerAd(),
       appBar: CustomeAppBar(
         appAlignment: true,
-        titleTxt: 'Phone Info',
+        titleTxt: 'Device Info',
       ),
       extendBodyBehindAppBar: true,
       body: Container(
         decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(
-              AppImages.backgroundImage,
-            ),
-            fit: BoxFit.cover,
-          ),
+          gradient: AppColors.Lineargradiebnt,
+          // image: DecorationImage(
+          //   image: AssetImage(
+          //     AppImages.backgroundImage,
+          //   ),
+          //   fit: BoxFit.cover,
+          // ),
         ),
         child: Center(
           child: Padding(

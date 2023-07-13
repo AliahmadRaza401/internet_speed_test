@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:internet_speedtest_app/utility/app_Images.dart';
 import '../utility/app_colors.dart';
 import 'custom_text_widget.dart';
 
@@ -17,12 +18,24 @@ class CustomeAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: Colors.transparent,
       elevation: 0,
-      title: text(
-        text: titleTxt,
-        size: 32.sp,
-        color: AppColors.textWhiteColor,
-        boldText: FontWeight.w700,
-        fontFamily: 'Jsefine Sans',
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            AppImages.metersmalIcon,
+            height: 20,
+            width: 25,
+            fit: BoxFit.contain,
+            color: AppColors.textWhiteColor,
+          ),
+          text(
+            text: titleTxt,
+            size: 32.sp,
+            color: AppColors.textWhiteColor,
+            boldText: FontWeight.w700,
+            fontFamily: 'Jsefine Sans',
+          )
+        ],
       ),
       centerTitle: appAlignment,
     );

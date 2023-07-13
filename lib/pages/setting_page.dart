@@ -26,11 +26,11 @@ class SettingsPage extends StatelessWidget {
           children: [
             ListTile(
               leading: Icon(
-                Icons.phone,
+                Icons.device_unknown,
                 color: AppColors.textWhiteColor,
               ),
               title: text(
-                text: 'Phone',
+                text: 'Device',
                 size: 20.sp,
                 color: AppColors.textWhiteColor,
                 fontFamily: 'Josefine Sans',
@@ -116,7 +116,7 @@ class SettingsPage extends StatelessWidget {
               child: Align(
                 alignment: Alignment.center,
                 child: text(
-                  text: 'Version: 1.0.3',
+                  text: 'Version: 1.0.1',
                   size: 24.sp,
                   fontFamily: 'Josefin Sans',
                   color: AppColors.textWhiteColor,

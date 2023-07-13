@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:internet_speedtest_app/pages/single_reult_detail_screen.dart';
 import 'package:internet_speedtest_app/provider/home_provider.dart';
@@ -34,16 +35,16 @@ class _ResultPageState extends State<ResultPage> {
         appAlignment: true,
         titleTxt: 'History',
       ),
-      extendBodyBehindAppBar: true,
+      // extendBodyBehindAppBar: true,
       body: Container(
         decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(
-              AppImages.backgroundImage,
+            // image: DecorationImage(
+            //   image: AssetImage(
+            //     AppImages.backgroundImage,
+            //   ),
+            //   fit: BoxFit.cover,
+            // ),
             ),
-            fit: BoxFit.cover,
-          ),
-        ),
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -189,121 +190,144 @@ class _ResultPageState extends State<ResultPage> {
     String testdate,
     String uploadData,
   ) {
-    return Container(
-      margin: EdgeInsets.only(bottom: 5.h),
-      decoration: BoxDecoration(
-        color: AppColors.primaryColor,
-        borderRadius: BorderRadius.circular(10.r),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.textWhiteColor,
-            blurStyle: BlurStyle.outer,
-            blurRadius: 8,
-            spreadRadius: 1,
+    return FadeInUpBig(
+      child: Container(
+        margin: EdgeInsets.only(bottom: 5.h),
+        decoration: BoxDecoration(
+          color: AppColors.lightBG,
+          borderRadius: BorderRadius.circular(10.r),
+          // boxShadow: [
+          //   BoxShadow(
+          //     color: AppColors.textWhiteColor,
+          //     blurStyle: BlurStyle.outer,
+          //     blurRadius: 8,
+          //     spreadRadius: 1,
+          //   ),
+          // ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            vertical: 15,
+            horizontal: 30,
           ),
-        ],
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.arrow_back_ios_new_rounded,
-                  color: AppColors.textWhiteColor,
-                )
-              ],
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                text(
-                  text: ipAddress.isEmpty ? 'Unknown' : ipAddress,
-                  size: 16.sp,
-                  color: AppColors.textWhiteColor,
-                  boldText: FontWeight.w700,
-                  fontFamily: 'Josefin Sans',
-                ),
-                SizedBox(height: 10.h),
-                text(
-                  text: testdate,
-                  size: 14.sp,
-                  color: AppColors.textWhiteColor,
-                  fontFamily: 'Josefine Sans',
-                  boldText: FontWeight.w400,
-                ),
-              ],
-            ),
-            Container(
-              height: 27,
-              width: 2,
-              color: Colors.white,
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 18.w,
-                      height: 18.w,
-                      child: Image(
-                        image: AssetImage(
-                          AppImages.downloadIcon,
-                        ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              // Column(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   crossAxisAlignment: CrossAxisAlignment.center,
+              //   children: [
+              //     Icon(
+              //       Icons.arrow_back_ios_new_rounded,
+              //       color: AppColors.textWhiteColor,
+              //     )
+              //   ],
+              // ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  text(
+                    text: testdate,
+                    size: 16.sp,
+                    color: AppColors.textWhiteColor,
+                    fontFamily: 'Josefine Sans',
+                    boldText: FontWeight.w700,
+                  ),
+                  SizedBox(height: 10.h),
+                  text(
+                    text: ipAddress.isEmpty ? 'Unknown' : ipAddress,
+                    size: 16.sp,
+                    color: AppColors.textWhiteColor,
+                    boldText: FontWeight.w400,
+                    fontFamily: 'Josefin Sans',
+                  ),
+                ],
+              ),
+              Container(
+                height: 27,
+                width: 2,
+                color: Colors.white,
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.arrow_circle_down_sharp,
+                        color: Color(0xFF6FFFBD),
+                        size: 18.w,
                       ),
-                    ),
-                    SizedBox(width: 10.w),
-                    text(
-                      text: downloadSpeed + 'Mbps',
-                      size: 14.sp,
-                      color: AppColors.textWhiteColor,
-                      fontFamily: 'Josefine Sans',
-                      boldText: FontWeight.w400,
-                    ),
-                  ],
-                ),
-                SizedBox(height: 15),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 18.w,
-                      height: 18.w,
-                      child: Image(
-                        image: AssetImage(
-                          AppImages.uploadIcon,
-                        ),
+                      SizedBox(width: 10.w),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          text(
+                            text: downloadSpeed,
+                            size: 22.sp,
+                            boldText: FontWeight.w800,
+                            color: AppColors.textWhiteColor,
+                            fontFamily: 'popinsbold',
+                          ),
+                          SizedBox(width: 5.w),
+                          text(
+                            text: 'Mbps',
+                            size: 10.sp,
+                            boldText: FontWeight.w400,
+                            color: AppColors.textWhiteColor,
+                            fontFamily: 'popinsregular',
+                          )
+                        ],
                       ),
-                    ),
-                    SizedBox(width: 10.w),
-                    text(
-                      text: uploadData + 'Mbps',
-                      size: 14.sp,
-                      color: AppColors.textWhiteColor,
-                      fontFamily: 'Josefine Sans',
-                      boldText: FontWeight.w400,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.arrow_forward_ios_rounded,
-                  color: AppColors.textWhiteColor,
-                )
-              ],
-            ),
-          ],
+                    ],
+                  ),
+                  SizedBox(height: 15),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.arrow_circle_up_sharp,
+                        color: Color(0xFF995FCF),
+                        size: 18.w,
+                      ),
+                      SizedBox(width: 10.w),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          text(
+                            text: uploadData,
+                            size: 22.sp,
+                            boldText: FontWeight.w800,
+                            color: AppColors.textWhiteColor,
+                            fontFamily: 'popinsbold',
+                          ),
+                          SizedBox(width: 5.w),
+                          text(
+                            text: 'Mbps',
+                            size: 10.sp,
+                            boldText: FontWeight.w400,
+                            color: AppColors.textWhiteColor,
+                            fontFamily: 'popinsregular',
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              // Column(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   crossAxisAlignment: CrossAxisAlignment.center,
+              //   children: [
+              //     Icon(
+              //       Icons.arrow_forward_ios_rounded,
+              //       color: AppColors.textWhiteColor,
+              //     )
+              //   ],
+              // ),
+            ],
+          ),
         ),
       ),
     );

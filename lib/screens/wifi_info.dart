@@ -5,7 +5,6 @@ import 'package:internet_speedtest_app/widgets/custom_app_bar.dart';
 import 'package:internet_speedtest_app/widgets/custom_text_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../utility/app_Images.dart';
 import '../utility/app_colors.dart';
 
 class WifiInfoScreen extends StatefulWidget {
@@ -35,12 +34,13 @@ class _WifiInfoScreenState extends State<WifiInfoScreen> {
       extendBodyBehindAppBar: true,
       body: Container(
         decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(
-              AppImages.backgroundImage,
-            ),
-            fit: BoxFit.cover,
-          ),
+          gradient: AppColors.Lineargradiebnt,
+          // image: DecorationImage(
+          //   image: AssetImage(
+          //     AppImages.backgroundImage,
+          //   ),
+          //   fit: BoxFit.cover,
+          // ),
         ),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 15.w),
