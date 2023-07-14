@@ -72,39 +72,45 @@ class _ResultPageState extends State<ResultPage> {
                   )
                 : SizedBox(
                     height: MediaQuery.of(context).size.height,
-                    child: ListView.builder(
-                      // shrinkWrap: true,
-                      itemCount: homeProvider.todoList.isEmpty
-                          ? 0
-                          : homeProvider.todoList.length,
-                      //  +
-                      //     (homeProvider.todoList.length ~/ 3),
-                      itemBuilder: (context, index) {
-                        WifiResultModel singleIndex =
-                            homeProvider.todoList[index];
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: InkWell(
-                            onTap: () {
-                              AppRoutes.push(
-                                context,
-                                PageTransitionType.fade,
-                                SingleResultDetailScreen(
-                                  singleIndex: homeProvider.todoList[index],
-                                  indexnumber: index,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 40),
+                      child: FadeInUpBig(
+                        child: ListView.builder(
+                          // shrinkWrap: true,
+                          itemCount: homeProvider.todoList.isEmpty
+                              ? 0
+                              : homeProvider.todoList.length,
+                          //  +
+                          //     (homeProvider.todoList.length ~/ 3),
+                          itemBuilder: (context, index) {
+                            WifiResultModel singleIndex =
+                                homeProvider.todoList[index];
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: InkWell(
+                                onTap: () {
+                                  AppRoutes.push(
+                                    context,
+                                    PageTransitionType.fade,
+                                    SingleResultDetailScreen(
+                                      singleIndex: homeProvider.todoList[index],
+                                      indexnumber: index,
+                                    ),
+                                  );
+                                },
+                                child: resultWidget(
+                                  DateFormat('yyyy-MM-dd ')
+                                      .format(singleIndex.testDate!),
+                                  singleIndex.dowoloadSpeed.toString(),
+                                  DateFormat('HH:mm')
+                                      .format(singleIndex.testDate!),
+                                  singleIndex.uploadSpeed.toString(),
                                 ),
-                              );
-                            },
-                            child: resultWidget(
-                              singleIndex.ipAddress.toString(),
-                              singleIndex.dowoloadSpeed.toString(),
-                              DateFormat('yyyy-MM-dd HH:mm')
-                                  .format(singleIndex.testDate!),
-                              singleIndex.uploadSpeed.toString(),
-                            ),
-                          ),
-                        );
-                      },
+                              ),
+                            );
+                          },
+                        ),
+                      ),
                     ),
                   ),
             // : SizedBox(
@@ -190,144 +196,142 @@ class _ResultPageState extends State<ResultPage> {
     String testdate,
     String uploadData,
   ) {
-    return FadeInUpBig(
-      child: Container(
-        margin: EdgeInsets.only(bottom: 5.h),
-        decoration: BoxDecoration(
-          color: AppColors.lightBG,
-          borderRadius: BorderRadius.circular(10.r),
-          // boxShadow: [
-          //   BoxShadow(
-          //     color: AppColors.textWhiteColor,
-          //     blurStyle: BlurStyle.outer,
-          //     blurRadius: 8,
-          //     spreadRadius: 1,
-          //   ),
-          // ],
+    return Container(
+      margin: EdgeInsets.only(bottom: 5.h),
+      decoration: BoxDecoration(
+        color: AppColors.lightBG,
+        borderRadius: BorderRadius.circular(10.r),
+        // boxShadow: [
+        //   BoxShadow(
+        //     color: AppColors.textWhiteColor,
+        //     blurStyle: BlurStyle.outer,
+        //     blurRadius: 8,
+        //     spreadRadius: 1,
+        //   ),
+        // ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: 15,
+          horizontal: 30,
         ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 15,
-            horizontal: 30,
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              // Column(
-              //   mainAxisAlignment: MainAxisAlignment.center,
-              //   crossAxisAlignment: CrossAxisAlignment.center,
-              //   children: [
-              //     Icon(
-              //       Icons.arrow_back_ios_new_rounded,
-              //       color: AppColors.textWhiteColor,
-              //     )
-              //   ],
-              // ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  text(
-                    text: testdate,
-                    size: 16.sp,
-                    color: AppColors.textWhiteColor,
-                    fontFamily: 'Josefine Sans',
-                    boldText: FontWeight.w700,
-                  ),
-                  SizedBox(height: 10.h),
-                  text(
-                    text: ipAddress.isEmpty ? 'Unknown' : ipAddress,
-                    size: 16.sp,
-                    color: AppColors.textWhiteColor,
-                    boldText: FontWeight.w400,
-                    fontFamily: 'Josefin Sans',
-                  ),
-                ],
-              ),
-              Container(
-                height: 27,
-                width: 2,
-                color: Colors.white,
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.arrow_circle_down_sharp,
-                        color: Color(0xFF6FFFBD),
-                        size: 18.w,
-                      ),
-                      SizedBox(width: 10.w),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          text(
-                            text: downloadSpeed,
-                            size: 22.sp,
-                            boldText: FontWeight.w800,
-                            color: AppColors.textWhiteColor,
-                            fontFamily: 'popinsbold',
-                          ),
-                          SizedBox(width: 5.w),
-                          text(
-                            text: 'Mbps',
-                            size: 10.sp,
-                            boldText: FontWeight.w400,
-                            color: AppColors.textWhiteColor,
-                            fontFamily: 'popinsregular',
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 15),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.arrow_circle_up_sharp,
-                        color: Color(0xFF995FCF),
-                        size: 18.w,
-                      ),
-                      SizedBox(width: 10.w),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          text(
-                            text: uploadData,
-                            size: 22.sp,
-                            boldText: FontWeight.w800,
-                            color: AppColors.textWhiteColor,
-                            fontFamily: 'popinsbold',
-                          ),
-                          SizedBox(width: 5.w),
-                          text(
-                            text: 'Mbps',
-                            size: 10.sp,
-                            boldText: FontWeight.w400,
-                            color: AppColors.textWhiteColor,
-                            fontFamily: 'popinsregular',
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              // Column(
-              //   mainAxisAlignment: MainAxisAlignment.center,
-              //   crossAxisAlignment: CrossAxisAlignment.center,
-              //   children: [
-              //     Icon(
-              //       Icons.arrow_forward_ios_rounded,
-              //       color: AppColors.textWhiteColor,
-              //     )
-              //   ],
-              // ),
-            ],
-          ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            // Column(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   crossAxisAlignment: CrossAxisAlignment.center,
+            //   children: [
+            //     Icon(
+            //       Icons.arrow_back_ios_new_rounded,
+            //       color: AppColors.textWhiteColor,
+            //     )
+            //   ],
+            // ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                text(
+                  text: testdate,
+                  size: 16.sp,
+                  color: AppColors.textWhiteColor,
+                  fontFamily: 'Josefine Sans',
+                  boldText: FontWeight.w700,
+                ),
+                SizedBox(height: 10.h),
+                text(
+                  text: ipAddress.isEmpty ? 'Unknown' : ipAddress,
+                  size: 16.sp,
+                  color: AppColors.textWhiteColor,
+                  boldText: FontWeight.w400,
+                  fontFamily: 'Josefin Sans',
+                ),
+              ],
+            ),
+            Container(
+              height: 27,
+              width: 2,
+              color: Colors.white,
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      Icons.arrow_circle_down_sharp,
+                      color: Color(0xFF6FFFBD),
+                      size: 18.w,
+                    ),
+                    SizedBox(width: 10.w),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        text(
+                          text: downloadSpeed,
+                          size: 22.sp,
+                          boldText: FontWeight.w800,
+                          color: AppColors.textWhiteColor,
+                          fontFamily: 'popinsbold',
+                        ),
+                        SizedBox(width: 5.w),
+                        text(
+                          text: 'Mbps',
+                          size: 10.sp,
+                          boldText: FontWeight.w400,
+                          color: AppColors.textWhiteColor,
+                          fontFamily: 'popinsregular',
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(height: 15),
+                Row(
+                  children: [
+                    Icon(
+                      Icons.arrow_circle_up_sharp,
+                      color: Color(0xFF995FCF),
+                      size: 18.w,
+                    ),
+                    SizedBox(width: 10.w),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        text(
+                          text: uploadData,
+                          size: 22.sp,
+                          boldText: FontWeight.w800,
+                          color: AppColors.textWhiteColor,
+                          fontFamily: 'popinsbold',
+                        ),
+                        SizedBox(width: 5.w),
+                        text(
+                          text: 'Mbps',
+                          size: 10.sp,
+                          boldText: FontWeight.w400,
+                          color: AppColors.textWhiteColor,
+                          fontFamily: 'popinsregular',
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            // Column(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   crossAxisAlignment: CrossAxisAlignment.center,
+            //   children: [
+            //     Icon(
+            //       Icons.arrow_forward_ios_rounded,
+            //       color: AppColors.textWhiteColor,
+            //     )
+            //   ],
+            // ),
+          ],
         ),
       ),
     );

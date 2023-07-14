@@ -4,6 +4,7 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   connectivity_plus_windows
+  firebase_core
   network_info_plus
   permission_handler_windows
   share_plus

@@ -25,6 +25,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 apply plugin: 'applovin-quality-service'
+apply plugin: 'com.google.gms.google-services' 
 applovin {
        apiKey "A5XP_KT9NMQ1qsZ7qrTNaGwvFnclEmflb8rWXDutBEewZwxFdi6FJN3pB5vA5gw7TuJdc_wGNUeWHPozNR6LdC"
 }
@@ -54,6 +55,7 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -74,4 +76,6 @@ dependencies {
     implementation 'com.applovin:applovin-sdk:11.4.4'
     implementation 'com.google.android.gms:play-services-location:20.0.0'
     implementation 'com.google.android.gms:play-services-ads-identifier:18.0.1'
+    implementation("com.google.firebase:firebase-analytics-ktx")
+    implementation "androidx.multidex:multidex:2.0.1"
 }

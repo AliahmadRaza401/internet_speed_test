@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:internet_speedtest_app/pages/result_page.dart';
 import 'package:internet_speedtest_app/pages/setting_page.dart';
 import 'package:internet_speedtest_app/pages/start_page.dart';
+import 'package:internet_speedtest_app/services/checkUpdate_service.dart';
 import 'package:internet_speedtest_app/utility/app_Images.dart';
 import 'package:internet_speedtest_app/widgets/custom_text_widget.dart';
 import 'package:lottie/lottie.dart';
@@ -19,6 +20,12 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    CheckUpdateService().versionCheck(context);
+  }
 
   void navigationBottomBar(int index) {
     // HomeProvider homeProvider =

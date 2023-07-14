@@ -112,12 +112,12 @@ class SettingsPage extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 18.h),
+              padding: EdgeInsets.only(top: 90.h),
               child: Align(
                 alignment: Alignment.center,
                 child: text(
-                  text: 'Version: 1.0.1',
-                  size: 24.sp,
+                  text: 'Version: 1.0.0.1',
+                  size: 18.sp,
                   fontFamily: 'Josefin Sans',
                   color: AppColors.textWhiteColor,
                   boldText: FontWeight.w700,

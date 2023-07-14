@@ -75,7 +75,7 @@ class _StartPageState extends State<StartPage> {
                                       child: Container(
                                         height:
                                             MediaQuery.of(context).size.height *
-                                                0.8,
+                                                0.75,
                                         child: Center(
                                           child: RippleWave(
                                             color: AppColors.lightBGMeter,
@@ -116,21 +116,25 @@ class _StartPageState extends State<StartPage> {
                                       ),
                                     )
                                   : Expanded(
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          infoDisplay(
-                                              wifiProvider.wifiIPv4,
-                                              phoneProvider.model,
-                                              internetConnectionProvider
-                                                  .isWifi),
-                                          meter(homeProvider),
-                                          ratesDisplay(homeProvider),
-                                          homepro.homeState == 3
-                                              ? testAgainBtn(homepro)
-                                              : SizedBox(),
-                                        ],
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 20.h),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            infoDisplay(
+                                                wifiProvider.wifiIPv4,
+                                                phoneProvider.model,
+                                                internetConnectionProvider
+                                                    .isWifi),
+                                            meter(homeProvider),
+                                            ratesDisplay(homeProvider),
+                                            homepro.homeState == 3
+                                                ? testAgainBtn(homepro)
+                                                : SizedBox(),
+                                          ],
+                                        ),
                                       ),
                                     ),
                             ],
@@ -157,7 +161,7 @@ class _StartPageState extends State<StartPage> {
         horizontal: 10,
       ),
       margin: EdgeInsets.symmetric(
-        vertical: 20.h,
+        vertical: 0.h,
         horizontal: 15.w,
       ),
       decoration: BoxDecoration(
@@ -191,24 +195,27 @@ class _StartPageState extends State<StartPage> {
           Expanded(
               child: Container(
             alignment: Alignment.center,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                text(
-                  text: 'Model',
-                  size: 12.sp,
-                  boldText: FontWeight.w400,
-                  color: Color(0xff7c808b),
-                  fontFamily: 'popinsregular',
-                ),
-                text(
-                  text: '${model}',
-                  size: 15.sp,
-                  boldText: FontWeight.w400,
-                  color: AppColors.textWhiteColor,
-                  fontFamily: 'popinsregular',
-                )
-              ],
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  text(
+                    text: 'Model',
+                    size: 12.sp,
+                    boldText: FontWeight.w400,
+                    color: Color(0xff7c808b),
+                    fontFamily: 'popinsregular',
+                  ),
+                  text(
+                    text: '${model}',
+                    size: 15.sp,
+                    boldText: FontWeight.w400,
+                    color: AppColors.textWhiteColor,
+                    fontFamily: 'popinsregular',
+                  )
+                ],
+              ),
             ),
           )),
           divider(height: 30.0),
@@ -242,7 +249,9 @@ class _StartPageState extends State<StartPage> {
 
   Widget meter(HomeProvider homeProvider) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.4,
+      height: homeProvider.homeState == 3
+          ? MediaQuery.of(context).size.height * 0.35
+          : MediaQuery.of(context).size.height * 0.4,
       child: SfRadialGauge(
         enableLoadingAnimation: true,
         animationDuration: 4500,
@@ -554,7 +563,7 @@ class _StartPageState extends State<StartPage> {
           homeProvider.cleanData();
         },
         child: Container(
-          margin: EdgeInsets.only(top: 0, bottom: 50.h),
+          margin: EdgeInsets.only(top: 0, bottom: 0.h),
           width: MediaQuery.of(context).size.width * 0.6,
           alignment: Alignment.center,
           padding: EdgeInsets.symmetric(

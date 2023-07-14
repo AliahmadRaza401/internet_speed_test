@@ -64,8 +64,8 @@ class HomeProvider extends ChangeNotifier {
           WifiResultModel(
             testDate: DateTime.now(),
             ping: '31',
-            dowoloadSpeed: download.transferRate.toString(),
-            uploadSpeed: upload.transferRate.toString(),
+            dowoloadSpeed: download.transferRate.toStringAsFixed(2),
+            uploadSpeed: upload.transferRate.toStringAsFixed(2),
             ipAddress: ipAddress,
           ),
         );
@@ -126,7 +126,7 @@ class HomeProvider extends ChangeNotifier {
 
   getTODOItem() async {
     final box = await Hive.openBox<WifiResultModel>(wifiResultBox);
-    _todoList = box.values.toList();
+    _todoList = box.values.toList().reversed.toList();
     // log("Wifi Result length " + _todoList.length.toString());
 
     notifyListeners();

@@ -23,14 +23,14 @@ class CustomeAppBar extends StatelessWidget implements PreferredSizeWidget {
         children: [
           Image.asset(
             AppImages.metersmalIcon,
-            height: 20,
-            width: 25,
+            height: 20.h,
+            width: 25.w,
             fit: BoxFit.contain,
             color: AppColors.textWhiteColor,
           ),
           text(
             text: titleTxt,
-            size: 32.sp,
+            size: 25.sp,
             color: AppColors.textWhiteColor,
             boldText: FontWeight.w700,
             fontFamily: 'Jsefine Sans',
