@@ -7,7 +7,6 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import '../models/wifi_Resut_Model.dart';
 import '../provider/home_provider.dart';
-import '../utility/app_Images.dart';
 
 // ignore: must_be_immutable
 class SingleResultDetailScreen extends StatefulWidget {
@@ -27,8 +26,7 @@ class _SingleResultDetailScreenState extends State<SingleResultDetailScreen> {
   @override
   Widget build(BuildContext context) {
     context.watch<HomeProvider>().getTODOItem();
-    HomeProvider homeProvider =
-        Provider.of<HomeProvider>(context, listen: true);
+ 
     return Scaffold(
       backgroundColor: Colors.transparent,
       extendBody: true,
@@ -52,27 +50,29 @@ class _SingleResultDetailScreenState extends State<SingleResultDetailScreen> {
         //   boldText: FontWeight.w600,
         // ),
         actions: [
-          IconButton(
-            onPressed: () {
-              homeProvider.deleteTODOItem(widget.indexnumber);
-            },
-            icon: Icon(
-              Icons.delete,
-            ),
-          ),
+          // IconButton(
+          //   onPressed: () {
+          //     homeProvider.deleteTODOItem(widget.indexnumber);
+          //     Navigator.of(context).pop();
+          //   },
+          //   icon: Icon(
+          //     Icons.delete,
+          //   ),
+          // ),
         ],
       ),
       body: Container(
         decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(
-              AppImages.backgroundImage,
-            ),
-            fit: BoxFit.cover,
-          ),
+          gradient: AppColors.Lineargradiebnt,
+          // image: DecorationImage(
+          //   image: AssetImage(
+          //     AppImages.backgroundImage,
+          //   ),
+          //   fit: BoxFit.cover,
+          // ),
         ),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w),
+          padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 50.h),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,

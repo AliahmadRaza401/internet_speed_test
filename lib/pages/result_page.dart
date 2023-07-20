@@ -1,9 +1,11 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:internet_speedtest_app/pages/single_reult_detail_screen.dart';
 import 'package:internet_speedtest_app/provider/home_provider.dart';
 import 'package:internet_speedtest_app/utility/app_Images.dart';
 import 'package:internet_speedtest_app/utility/app_colors.dart';
+import 'package:internet_speedtest_app/utility/line_chart.dart';
 import 'package:internet_speedtest_app/widgets/app_Routes.dart';
 import 'package:internet_speedtest_app/widgets/custom_text_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,6 +25,24 @@ class ResultPage extends StatefulWidget {
 
 class _ResultPageState extends State<ResultPage> {
   int adsPlace = 2;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  List<FlSpot> getChartData(List<double> downloadRateHistory) {
+    List<FlSpot> chartData = [];
+    for (int i = 0; i < downloadRateHistory.length; i++) {
+      chartData.add(FlSpot(i.toDouble(), downloadRateHistory[i]));
+    }
+    return chartData;
+  }
+
+  double getMaxRate(List<double> downloadRateHistory) {
+    return downloadRateHistory.reduce((max, rate) => rate > max ? rate : max);
+  }
+
   @override
   Widget build(BuildContext context) {
     context.watch<HomeProvider>().getTODOItem();
@@ -45,146 +65,158 @@ class _ResultPageState extends State<ResultPage> {
             //   fit: BoxFit.cover,
             // ),
             ),
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: homeProvider.todoList.length == 0
-                ? SizedBox(
-                    height: MediaQuery.of(context).size.height,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Lottie.asset(
-                          AppImages.noHistory,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: homeProvider.todoList.length == 0
+              ? SizedBox(
+                  height: MediaQuery.of(context).size.height,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Lottie.asset(
+                        AppImages.noHistory,
 
-                          // width: 200,
-                          // height: MediaQuery.of(context).size.height * 0.5,
-                          fit: BoxFit.fill,
-                        ),
-                        text(
-                          text: 'No Data Found',
-                          size: 34.sp,
-                          color: AppColors.textGreyColor,
-                        )
-                      ],
+                        // width: 200,
+                        // height: MediaQuery.of(context).size.height * 0.5,
+                        fit: BoxFit.fill,
+                      ),
+                      text(
+                        text: 'No Data Found',
+                        size: 34.sp,
+                        color: AppColors.textGreyColor,
+                      )
+                    ],
+                  ),
+                )
+              : ListView(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  children: [
+                    FadeIn(
+                      child: LineChartSample1(
+                        downloadList: homeProvider.downloadList,
+                        uploadList: homeProvider.uploadList,
+                      ),
                     ),
-                  )
-                : SizedBox(
-                    height: MediaQuery.of(context).size.height,
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 40),
-                      child: FadeInUpBig(
-                        child: ListView.builder(
-                          // shrinkWrap: true,
-                          itemCount: homeProvider.todoList.isEmpty
-                              ? 0
-                              : homeProvider.todoList.length,
-                          //  +
-                          //     (homeProvider.todoList.length ~/ 3),
-                          itemBuilder: (context, index) {
-                            WifiResultModel singleIndex =
-                                homeProvider.todoList[index];
-                            return Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: InkWell(
-                                onTap: () {
-                                  AppRoutes.push(
-                                    context,
-                                    PageTransitionType.fade,
-                                    SingleResultDetailScreen(
-                                      singleIndex: homeProvider.todoList[index],
-                                      indexnumber: index,
-                                    ),
-                                  );
-                                },
-                                child: resultWidget(
-                                  DateFormat('yyyy-MM-dd ')
-                                      .format(singleIndex.testDate!),
-                                  singleIndex.dowoloadSpeed.toString(),
-                                  DateFormat('HH:mm')
-                                      .format(singleIndex.testDate!),
-                                  singleIndex.uploadSpeed.toString(),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.6,
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 40),
+                        child: FadeInUpBig(
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            physics: ClampingScrollPhysics(),
+                            itemCount: homeProvider.todoList.isEmpty
+                                ? 0
+                                : homeProvider.todoList.length,
+                            //  +
+                            //     (homeProvider.todoList.length ~/ 3),
+                            itemBuilder: (context, index) {
+                              WifiResultModel singleIndex =
+                                  homeProvider.todoList[index];
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: InkWell(
+                                  onTap: () {
+                                    AppRoutes.push(
+                                      context,
+                                      PageTransitionType.fade,
+                                      SingleResultDetailScreen(
+                                        singleIndex:
+                                            homeProvider.todoList[index],
+                                        indexnumber: index,
+                                      ),
+                                    );
+                                  },
+                                  child: resultWidget(
+                                    DateFormat('yyyy-MM-dd ')
+                                        .format(singleIndex.testDate!),
+                                    singleIndex.dowoloadSpeed.toString(),
+                                    DateFormat('HH:mm')
+                                        .format(singleIndex.testDate!),
+                                    singleIndex.uploadSpeed.toString(),
+                                  ),
                                 ),
-                              ),
-                            );
-                          },
+                              );
+                            },
+                          ),
                         ),
                       ),
                     ),
-                  ),
-            // : SizedBox(
-            //     height: MediaQuery.of(context).size.height,
-            //     child: ListView.builder(
-            //       itemCount: homeProvider.todoList.isEmpty
-            //           ? 0
-            //           : homeProvider.todoList.length +
-            //               (homeProvider.todoList.length ~/ 3),
-            //       itemBuilder: (context, index) {
-            //         if (index > 0 && (index + 1) % 4 == 0) {
-            //           final adIndex = (index + 1) ~/ 4 - 1;
-            //           return Column(
-            //             children: [
-            //               Padding(
-            //                 padding: const EdgeInsets.all(8.0),
-            //                 child: InkWell(
-            //                   onTap: () {
-            //                     AppRoutes.push(
-            //                       context,
-            //                       PageTransitionType.fade,
-            //                       SingleResultDetailScreen(
-            //                         singleIndex:
-            //                             homeProvider.todoList[index],
-            //                         indexnumber: index,
-            //                       ),
-            //                     );
-            //                   },
-            //                   child: resultWidget(
-            //                     homeProvider.todoList[adIndex].ipAddress
-            //                         .toString(),
-            //                     homeProvider.todoList[adIndex].dowoloadSpeed
-            //                         .toString(),
-            //                     DateFormat('yyyy-MM-dd HH:mm').format(
-            //                         homeProvider
-            //                             .todoList[adIndex].testDate!),
-            //                     homeProvider.todoList[adIndex].uploadSpeed
-            //                         .toString(),
-            //                   ),
-            //                 ),
-            //               ),
-            //               AdsServices.displayNativeMRECAd(),
-            //             ],
-            //           );
-            //         } else {
-            //           final dataIndex = index - (index ~/ 4);
-            //           final todoCat = homeProvider.todoList[dataIndex];
-            //           return Padding(
-            //             padding: const EdgeInsets.all(8.0),
-            //             child: InkWell(
-            //               onTap: () {
-            //                 AppRoutes.push(
-            //                   context,
-            //                   PageTransitionType.fade,
-            //                   SingleResultDetailScreen(
-            //                     singleIndex: homeProvider.todoList[index],
-            //                     indexnumber: index,
-            //                   ),
-            //                 );
-            //               },
-            //               child: resultWidget(
-            //                 todoCat.ipAddress.toString(),
-            //                 todoCat.dowoloadSpeed.toString(),
-            //                 DateFormat('yyyy-MM-dd HH:mm')
-            //                     .format(todoCat.testDate!),
-            //                 todoCat.uploadSpeed.toString(),
-            //               ),
-            //             ),
-            //           );
-            //         }
-            //       },
-            //     ),
-            //   ),
-          ),
+                  ],
+                ),
+          // : SizedBox(
+          //     height: MediaQuery.of(context).size.height,
+          //     child: ListView.builder(
+          //       itemCount: homeProvider.todoList.isEmpty
+          //           ? 0
+          //           : homeProvider.todoList.length +
+          //               (homeProvider.todoList.length ~/ 3),
+          //       itemBuilder: (context, index) {
+          //         if (index > 0 && (index + 1) % 4 == 0) {
+          //           final adIndex = (index + 1) ~/ 4 - 1;
+          //           return Column(
+          //             children: [
+          //               Padding(
+          //                 padding: const EdgeInsets.all(8.0),
+          //                 child: InkWell(
+          //                   onTap: () {
+          //                     AppRoutes.push(
+          //                       context,
+          //                       PageTransitionType.fade,
+          //                       SingleResultDetailScreen(
+          //                         singleIndex:
+          //                             homeProvider.todoList[index],
+          //                         indexnumber: index,
+          //                       ),
+          //                     );
+          //                   },
+          //                   child: resultWidget(
+          //                     homeProvider.todoList[adIndex].ipAddress
+          //                         .toString(),
+          //                     homeProvider.todoList[adIndex].dowoloadSpeed
+          //                         .toString(),
+          //                     DateFormat('yyyy-MM-dd HH:mm').format(
+          //                         homeProvider
+          //                             .todoList[adIndex].testDate!),
+          //                     homeProvider.todoList[adIndex].uploadSpeed
+          //                         .toString(),
+          //                   ),
+          //                 ),
+          //               ),
+          //               AdsServices.displayNativeMRECAd(),
+          //             ],
+          //           );
+          //         } else {
+          //           final dataIndex = index - (index ~/ 4);
+          //           final todoCat = homeProvider.todoList[dataIndex];
+          //           return Padding(
+          //             padding: const EdgeInsets.all(8.0),
+          //             child: InkWell(
+          //               onTap: () {
+          //                 AppRoutes.push(
+          //                   context,
+          //                   PageTransitionType.fade,
+          //                   SingleResultDetailScreen(
+          //                     singleIndex: homeProvider.todoList[index],
+          //                     indexnumber: index,
+          //                   ),
+          //                 );
+          //               },
+          //               child: resultWidget(
+          //                 todoCat.ipAddress.toString(),
+          //                 todoCat.dowoloadSpeed.toString(),
+          //                 DateFormat('yyyy-MM-dd HH:mm')
+          //                     .format(todoCat.testDate!),
+          //                 todoCat.uploadSpeed.toString(),
+          //               ),
+          //             ),
+          //           );
+          //         }
+          //       },
+          //     ),
+          //   ),
         ),
       ),
     );

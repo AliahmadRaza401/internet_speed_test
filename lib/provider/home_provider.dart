@@ -32,6 +32,10 @@ class HomeProvider extends ChangeNotifier {
   bool testUploadType = false;
   String ipAddress = '';
 
+  double previousDownloadRate = 0.0;
+  int consecutiveJumpCount = 0;
+  int maxConsecutiveJumpsAllowed = 3;
+
   checkInterSpeed() {
     internetSpeedTest.startTesting(
       onProgress: (percent, data) {
@@ -39,11 +43,24 @@ class HomeProvider extends ChangeNotifier {
           'data.unit ${data.unit} Transfer Type : ${data.type}the transfer rate ${data.transferRate}, the percent $percent',
         );
 
-        dataUnit = data.unit.toString();
-        tranxferType = data.type.toString();
-        transferRate = data.transferRate;
-        dataCompleteRate = percent;
-        notifyListeners();
+        // Check if the new rate is significantly higher than the previous one
+        if (data.transferRate - previousDownloadRate > 10) {
+          consecutiveJumpCount++;
+          if (consecutiveJumpCount <= maxConsecutiveJumpsAllowed) {
+            // Keep the previous rate and don't update
+            print(
+                'Ignoring the jump in download rate.___________________________________________________');
+            return;
+          }
+        } else {
+          // Reset the consecutive jump count if the rate is reasonable
+          consecutiveJumpCount = 0;
+          dataUnit = data.unit.toString();
+          tranxferType = data.type.toString();
+          transferRate = data.transferRate;
+          dataCompleteRate = percent;
+          notifyListeners();
+        }
       },
       onError: (String errorMessage, String speedTestError) {
         print(
@@ -117,6 +134,17 @@ class HomeProvider extends ChangeNotifier {
   List<WifiResultModel> get todoList => _todoList;
   List<dynamic> parsedList = [];
   // TODO WORK
+  List<double> downloadList = [];
+  List<double> uploadList = [];
+
+  seprateTheLists(List<WifiResultModel> list) {
+    for (var e in list) {
+      downloadList.add(double.parse(e.dowoloadSpeed.toString()));
+      uploadList.add(double.parse(e.uploadSpeed.toString()));
+
+      notifyListeners();
+    }
+  }
 
   addTODOItem(WifiResultModel product) async {
     var box = await Hive.openBox<WifiResultModel>(wifiResultBox);
@@ -128,7 +156,9 @@ class HomeProvider extends ChangeNotifier {
     final box = await Hive.openBox<WifiResultModel>(wifiResultBox);
     _todoList = box.values.toList().reversed.toList();
     // log("Wifi Result length " + _todoList.length.toString());
-
+    downloadList.clear();
+    uploadList.clear();
+    seprateTheLists(_todoList);
     notifyListeners();
   }
 
