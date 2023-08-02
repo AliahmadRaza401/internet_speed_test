@@ -34,7 +34,7 @@ class HomeProvider extends ChangeNotifier {
 
   double previousDownloadRate = 0.0;
   int consecutiveJumpCount = 0;
-  int maxConsecutiveJumpsAllowed = 3;
+  int maxConsecutiveJumpsAllowed = 1;
 
   checkInterSpeed() {
     internetSpeedTest.startTesting(
@@ -58,9 +58,10 @@ class HomeProvider extends ChangeNotifier {
           dataUnit = data.unit.toString();
           tranxferType = data.type.toString();
           transferRate = data.transferRate;
-          dataCompleteRate = percent;
-          notifyListeners();
         }
+        previousDownloadRate = data.transferRate;
+        dataCompleteRate = percent;
+        notifyListeners();
       },
       onError: (String errorMessage, String speedTestError) {
         print(
