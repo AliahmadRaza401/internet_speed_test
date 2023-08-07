@@ -1,4 +1,4 @@
-package com.example.internet_speedtest_app
+package com.speedtest.internetspeed.test.wifi.speedtest.internetspeedtest.netspeed
 
 import io.flutter.embedding.android.FlutterActivity
 

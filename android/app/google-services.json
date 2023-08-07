@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1027558657248:android:f862e1aa125326a70b1485",
+        "mobilesdk_app_id": "1:1027558657248:android:048837f18ca82be00b1485",
         "android_client_info": {
-          "package_name": "com.example.internet_speedtest_app"
+          "package_name": "com.speedtest.internetspeed.test.wifi.speedtest.internetspeedtest.netspeed"
         }
       },
       "oauth_client": [

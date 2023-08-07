@@ -1,11 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.internet_speedtest_app">
+    package="com.speedtest.internetspeed.test.wifi.speedtest.internetspeedtest.netspeed">
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
    <application
-        android:label="internet_speedtest_app"
+        android:label="Internet Speed Test - NetSpeed"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
