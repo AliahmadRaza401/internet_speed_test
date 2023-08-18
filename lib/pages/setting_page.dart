@@ -58,6 +58,9 @@ class SettingsPage extends StatelessWidget {
                 boldText: FontWeight.w500,
               ),
               onTap: () {
+
+                
+
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return WifiInfoScreen();
                 }));
@@ -94,7 +97,7 @@ class SettingsPage extends StatelessWidget {
               onTap: (() {
                 // Navigator.of(context).pop();
                 Share.share(
-                    'check out my Application com.net.speed.wifitest.speedtest.wifispeed.internet');
+                    'check out my Application https://play.google.com/store/apps/details?id=com.speedtest.internetspeed.test.wifi.speedtest.internetspeedtest.netspeed');
               }),
             ),
             Container(height: 0.5, color: AppColors.textGreyColor),
@@ -111,6 +114,10 @@ class SettingsPage extends StatelessWidget {
                 boldText: FontWeight.w500,
               ),
             ),
+
+      
+
+
             Padding(
               padding: EdgeInsets.only(top: 90.h),
               child: Align(
