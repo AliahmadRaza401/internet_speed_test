@@ -10,6 +10,9 @@ import 'package:internet_speedtest_app/models/wifi_Resut_Model.dart';
 import 'package:internet_speedtest_app/provider/all_providers.dart';
 import 'package:internet_speedtest_app/provider/internet_connection_provider.dart';
 import 'package:internet_speedtest_app/services/fcm_services.dart';
+import 'package:internet_speedtest_app/task/login.dart';
+import 'package:internet_speedtest_app/task/navi_bar.dart';
+import 'package:internet_speedtest_app/task/singUp.dart';
 import 'package:permission_handler/permission_handler.dart';
 import './screens/splash_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -45,23 +48,23 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    requestPermissions();
+    // requestPermissions();
   }
 
-  Future<void> requestStoragePermission() async {
-    final PermissionStatus status = await Permission.storage.request();
-    if (status.isGranted) {
-      // Permission granted, access storage
-      // accessStorage();
-    } else {
-      // Permission denied, handle accordingly
-      print('Storage permission not granted');
-    }
-  }
+  // Future<void> requestStoragePermission() async {
+  //   final PermissionStatus status = await Permission.storage.request();
+  //   if (status.isGranted) {
+  //     // Permission granted, access storage
+  //     // accessStorage();
+  //   } else {
+  //     // Permission denied, handle accordingly
+  //     print('Storage permission not granted');
+  //   }
+  // }
 
-  Future<void> requestPermissions() async {
-    requestStoragePermission();
-  }
+  // Future<void> requestPermissions() async {
+  //   requestStoragePermission();
+  // }
 
   void handlePermissionStatus(Map<Permission, PermissionStatus> status) {
     if (status[Permission.storage]!.isGranted) {
@@ -93,7 +96,11 @@ class _MyAppState extends State<MyApp> {
                   visualDensity: VisualDensity.adaptivePlatformDensity,
                 ),
                 debugShowCheckedModeBanner: false,
-                home: const SplashScreen(),
+                home:
+                    // MyNavigationBarScreen(),
+                    // Login(),
+                    SignupPage(),
+                // const SplashScreen(),
               );
             }));
       },

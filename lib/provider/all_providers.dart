@@ -2,6 +2,7 @@ import 'package:internet_speedtest_app/provider/home_provider.dart';
 import 'package:internet_speedtest_app/provider/internet_connection_provider.dart';
 import 'package:internet_speedtest_app/provider/phone_provider.dart';
 import 'package:internet_speedtest_app/provider/wifi_provider.dart';
+import 'package:internet_speedtest_app/task/auth_provider.dart';
 import 'package:provider/provider.dart';
 
 var allProvider = [
@@ -19,6 +20,10 @@ var allProvider = [
   ),
    ChangeNotifierProvider<WifiProvider>(
     create: (_) => WifiProvider(),
+    lazy: true,
+  ),
+   ChangeNotifierProvider<AuthProvider>(
+    create: (_) => AuthProvider(),
     lazy: true,
   ),
 ];
